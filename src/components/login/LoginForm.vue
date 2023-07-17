@@ -12,6 +12,9 @@
     <div class="input-offset" style="text-align: center;">
       <Button label="Submit" @click="login" />
     </div>
+    <div v-if="loader" style="text-align: center;">
+      <ProgressSpinner />
+    </div>
     <div v-if="loginErrorMessage" style="text-align: center;">
       <InlineMessage severity="error">{{ loginErrorMessage }}</InlineMessage>
     </div>
@@ -22,12 +25,14 @@
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
 import InlineMessage from 'primevue/inlinemessage';
+import ProgressSpinner from 'primevue/progressspinner';
 import { mapGetters } from "vuex";
 
 export default {
   name: 'LoginForm',
   data() {
     return {
+      loader: false,
       credential: {
         email: '',
         password: ''
@@ -36,18 +41,32 @@ export default {
   },
   computed: {
     ...mapGetters([
+      'token',
       'loginErrorMessage'
     ])
   },
   methods: {
     login() {
+      if (this.loader) {
+        return;
+      }
+
+      this.loader = true;
+
       this.$store.dispatch('login', this.credential)
+
+      this.loader = false;
+
+      if (this.token) {
+        location.href = '/'
+      }
     }
   },
   components: {
     InputText,
     Button,
-    InlineMessage
+    InlineMessage,
+    ProgressSpinner
   }
 }
 </script>
