@@ -17,8 +17,10 @@ export default {
 
 <style scoped>
 .center {
-  margin: auto;
-  width: 20%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   padding: 10px;
 }
 </style>

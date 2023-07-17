@@ -1,15 +1,19 @@
 <template>
   <div class="form">
-    <span class="p-float-label input-offset">
-      <InputText id="email" type="email" />
-      <label for="email">Email</label>
-    </span>
-    <span class="p-float-label input-offset">
-      <InputText id="password" type="password" />
-      <label for="password">Password</label>
-    </span>
+    <div style="text-align: center;">
+      <h3>Jam</h3>
+    </div>
     <div>
-      <Button label="Submit" />
+      <InputText type="text" placeholder="Email" class="input-offset" v-model="credential.email" style="width: 100%" />
+    </div>
+    <div>
+      <InputText type="password" placeholder="Password" class="input-offset" v-model="credential.password" style="width: 100%" />
+    </div>
+    <div class="input-offset" style="text-align: center;">
+      <Button label="Submit" @click="login" />
+    </div>
+    <div v-if="loginErrorMessage" style="text-align: center;">
+      <InlineMessage severity="error">{{ loginErrorMessage }}</InlineMessage>
     </div>
   </div>
 </template>
@@ -17,12 +21,33 @@
 <script>
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
+import InlineMessage from 'primevue/inlinemessage';
+import { mapGetters } from "vuex";
 
 export default {
   name: 'LoginForm',
+  data() {
+    return {
+      credential: {
+        email: '',
+        password: ''
+      }
+    }
+  },
+  computed: {
+    ...mapGetters([
+      'loginErrorMessage'
+    ])
+  },
+  methods: {
+    login() {
+      this.$store.dispatch('login', this.credential)
+    }
+  },
   components: {
     InputText,
-    Button
+    Button,
+    InlineMessage
   }
 }
 </script>
