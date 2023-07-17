@@ -46,15 +46,15 @@ export default {
     ])
   },
   methods: {
-    login() {
+    async login() {
       if (this.loader) {
         return;
       }
 
       this.loader = true;
 
-      this.$store.dispatch('login', this.credential)
-
+      await this.$store.dispatch('login', this.credential)
+      
       this.loader = false;
 
       if (this.token) {
