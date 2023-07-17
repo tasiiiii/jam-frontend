@@ -54,7 +54,7 @@ export default {
       this.loader = true;
 
       await this.$store.dispatch('login', this.credential)
-      
+
       this.loader = false;
 
       if (this.token) {
