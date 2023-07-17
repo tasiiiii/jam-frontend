@@ -1,16 +1,6 @@
 export default {
-    state: () => ({
-        token: ''
-    }),
-    getters: {
-        token (state) {
-            return state.token;
-        }
-    },
-    mutations: {
-        setToken(state, token) {
-            state.token = token;
-        }
-    },
+    state: {},
+    getters: {},
+    mutations: {},
     actions: {},
 }
