@@ -1,7 +1,7 @@
 <template>
   <div class="form">
     <div style="text-align: center;">
-      <h3 style="font-family: 'VT323', monospace; font-size: 30px;">Jam - GameDev</h3>
+      <h3 style="font-size: 18px;">Jam</h3>
     </div>
     <div>
       <InputText type="text" placeholder="Email" class="input-offset" v-model="credential.email" style="width: 100%" />
