@@ -6,6 +6,9 @@ export default {
     getters: {
         teams(state) {
             return state.teams;
+        },
+        team(state) {
+            return state.team;
         }
     },
     mutations: {
@@ -56,7 +59,7 @@ export default {
             const team = await res.json();
 
             if (res.ok) {
-                ctx.commit('setTeam', team);
+                ctx.commit('setTeam', team.data);
             }
         }
     }
