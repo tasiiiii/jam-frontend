@@ -1,7 +1,7 @@
 <template>
   <div class="form">
     <div style="text-align: center;">
-      <h3>Jam</h3>
+      <h3 style="font-family: 'VT323', monospace; font-size: 30px;">Jam - GameDev</h3>
     </div>
     <div>
       <InputText type="text" placeholder="Email" class="input-offset" v-model="credential.email" style="width: 100%" />
@@ -10,7 +10,7 @@
       <InputText type="password" placeholder="Password" class="input-offset" v-model="credential.password" style="width: 100%" />
     </div>
     <div class="input-offset" style="text-align: center;">
-      <Button label="Submit" @click="login" />
+      <Button label="Login" @click="login" />
     </div>
     <div v-if="loader" style="text-align: center;">
       <ProgressSpinner />
@@ -52,9 +52,7 @@ export default {
       }
 
       this.loader = true;
-
       await this.$store.dispatch('login', this.credential)
-
       this.loader = false;
 
       if (this.token) {
